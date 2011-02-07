@@ -1,9 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Webtrends Facebook Examples</title>
-  </head>
+    <meta property="og:title" content="Webtrends Labs - Facebook"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content="http://wt-facebook.appspot.com/"/>
+    <meta property="og:site_name" content="Webtrends Labs"/>
+    <meta property="fb:admins" content="620859611" />
+    
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+
+    <title>Webtrends Facebook Examples!</title>
+
+    <script type="text/javascript" src="/scripts/webtrendsasyncloader.js"></script>
+</head>
   <body>
     <fb:login-button autologoutlink="true"></fb:login-button>
 
@@ -11,6 +22,11 @@
       <p><a href="{{ current_user.profile_url }}"><img src="http://graph.facebook.com/{{ current_user.id }}/picture?type=square"/></a></p>
       <p>Hello, {{ current_user.name|escape }}</p>
     {% endif %}
+
+	<p>We know you like this page.  We're sure you couldn't wait to get here.  The question is, which Like do you like?  Click on the Like button layout you like best below</p>
+    <p>The default Like button: <fb:like ref="first - default"></fb:like></p>
+    <p>The "button count" layout: <fb:like ref="second - button_count" layout="button_count"></fb:like></p>
+    <p>The "box count" layout: <fb:like ref="third - box_count" layout="box_count"></fb:like></p>
 
     <div id="fb-root"></div>
     <script>

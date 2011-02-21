@@ -15,5 +15,5 @@ handlers:
   upload: favicon.ico
   
 - url: /.*
-  script: example.py
+  script: wt-facebook.py
   

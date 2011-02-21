@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta property="og:title" content="Webtrends Labs - Facebook"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content="http://wt-facebook.appspot.com/"/>
+    <meta property="og:site_name" content="Webtrends Labs"/>
+    <meta property="fb:admins" content="620859611" />
+    
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+
+    <title>Webtrends Facebook Examples!</title>
+
+    <script type="text/javascript" src="/scripts/webtrendsasyncloader.js"></script>
+</head>
+  <body>
+  	<h1>Facebook Social Plugins</h1>
+  	<h4>Login Button</h4>
+    <p><fb:login-button autologoutlink="true"></fb:login-button></p>
+
+    {% if current_user %}
+      <p><a href="{{ current_user.profile_url }}"><img src="http://graph.facebook.com/{{ current_user.id }}/picture?type=square"/></a></p>
+      <p>Hello, {{ current_user.name|escape }} We know you like this page.  We're sure you couldn't wait to get here.</p>
+    {% endif %}
+    <hr>
+	<div>
+	  	<h4>Like Button</h4>
+		<table>
+		<tr>
+		<td>
+			<p>The question is, which Like do you like?  Click on the Like button layout you like best</p>
+		</td>
+		<td>
+			<p>Example Like Buttons</p>
+		    <p>The default Like button: <fb:like ref="first - default"></fb:like></p>
+		    <p>The "button count" layout: <fb:like ref="second - button_count" layout="button_count"></fb:like></p>
+  			<p>The "box count" layout: <fb:like ref="third - box_count" layout="box_count"></fb:like></p>
+		</td>
+		</tr>
+	</table>
+	</div>
+    <hr>
+	<div>
+	    <h4>Activity / Recommendations</h4>
+		<table>
+		<tr>
+		<td>
+			<p>The Activity Feed plugin displays the most interesting recent activity taking place on your site. Since the content is hosted by Facebook, the plugin can display personalized content whether or not the user has logged into your site. The activity feed displays stories both when users like content on your site and when users share content from your site back to Facebook. If a user is logged into Facebook, the plugin will be personalized to highlight content from their friends. If the user is logged out, the activity feed will show recommendations from your site, and give the user the option to log in to Facebook.
+			<p>The plugin is filled with activity from the user's friends. If there isn't enough friend activity to fill the plugin, it is backfilled with recommendations. If you set the recommendations param to true, the plugin is split in half, showing friends activity in the top half, and recommendations in the bottom half. If there is not enough friends activity to fill half of the plugin, it will include more recommendations.
+		</td>
+		<td>
+		    <p><fb:activity width="300" height="300" header="true" recommendations="true"></fb:activity></p>
+		</td>
+		</tr>
+		</table>
+    </div>
+    <hr>
+	<div>
+	    <h4>Live Stream</h4>
+		<table>
+		<tr>
+		<td>
+			<p>The Live Stream plugin lets users visiting your site or application share activity and comments in real time. Live Stream works best when you are running a real-time event, like live streaming video for concerts, speeches, or webcasts, live Web chats, webinars, massively multiplayer games.</p>
+		</td>
+		<td>
+		    <p><fb:live-stream event_app_id="186982197999881" width="400" height="500" always_post_to_friends="false"></fb:live-stream></p>
+		</td>
+		</tr>
+		</table>
+    </div>
+    <hr>
+	<div>
+	    <h4>Comments</h4>
+		<table>
+		<tr>
+		<td>
+			<p>The Comments Box easily enables your users to comment on your site's content — whether it's for a web page, article, photo, or other piece of content. Then the user can share the comment on Facebook on their Wall and in their friends' streams.</p>
+		</td>
+		<td>
+		    <p><fb:comments numposts="10" width="425" publish_feed="true"></fb:comments></p>
+		</td>
+		</tr>
+		</table>
+    </div>
+
+
+
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({appId: '{{ facebook_app_id }}', status: true, cookie: true,
+                 xfbml: true});
+        FB.Event.subscribe('{% if current_user %}auth.logout{% else %}auth.login{% endif %}', function(response) {
+          window.location.reload();
+        });
+      };
+      (function() {
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+      }());
+    </script>
+  </body>
+</html>
